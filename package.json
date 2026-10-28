@@ -1,6 +1,6 @@
 {
 	"name": "@yedoma-labs/ysuly-problem",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Type-safe RFC 9457 Problem Details with safe error mapping, zero dependencies",
 	"type": "module",
 	"main": "./dist/index.cjs",
