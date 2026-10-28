@@ -1,4 +1,4 @@
-import { normalizeProblem, ProblemError } from "./problem.js";
+import { canCarryProblemBody, normalizeProblem, ProblemError } from "./problem.js";
 
 /** A problem definition that can be reused for errors of a known kind. */
 export interface ProblemTemplate {
@@ -57,6 +57,9 @@ export function defineProblems<const T extends ProblemTemplates>(
 		}
 		try {
 			normalizeProblem({ ...template, extensions: undefined });
+			if (!canCarryProblemBody(template.status)) {
+				issues.push(`${key}: status ${template.status} cannot carry a problem body`);
+			}
 		} catch (error) {
 			if (error instanceof ProblemError) {
 				issues.push(`${key}: ${error.issues.join("; ")}`);

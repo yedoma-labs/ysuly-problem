@@ -10,6 +10,14 @@ export const TITLE_MAX_LENGTH = 200;
 export const DETAIL_MAX_LENGTH = 1000;
 const URI_MAX_LENGTH = 2048;
 
+/**
+ * Whether a response with this status can carry a problem body: 200-599, except
+ * 204, 205 and 304, which must not have a body.
+ */
+export function canCarryProblemBody(status: number): boolean {
+	return status >= 200 && status !== 204 && status !== 205 && status !== 304;
+}
+
 /** Members defined by RFC 9457. They may not be used as extension keys. */
 export const RESERVED_MEMBERS: ReadonlySet<string> = new Set([
 	"type",

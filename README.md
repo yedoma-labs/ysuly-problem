@@ -1,5 +1,17 @@
 # @yedoma-labs/ysuly-problem
 
+<picture>
+  <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/yedoma-labs/assets/main/resized/banner-resized-mobile.png">
+  <img src="https://raw.githubusercontent.com/yedoma-labs/assets/main/resized/banner-resized.png" alt="Project Header">
+</picture>
+
+[![CI](https://github.com/yedoma-labs/ysuly-problem/actions/workflows/ci.yml/badge.svg)](https://github.com/yedoma-labs/ysuly-problem/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@yedoma-labs/ysuly-problem.svg)](https://www.npmjs.com/package/@yedoma-labs/ysuly-problem)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7-blue.svg)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+> **ысулы** (*ysuly*) — Yakutian (Sakha) for "(noch zu bestätigen)"
+
 Type-safe [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457) Problem Details for TypeScript, with a mapping from arbitrary thrown errors that never leaks internals. Zero runtime dependencies. Uses only Web-standard APIs (`Response`, `Headers`, `JSON`), so it runs on Node 20+, Bun, Deno and edge runtimes.
 
 ## The problem
@@ -102,7 +114,7 @@ Maps any value to a `ProblemDetails`. Options:
 
 ### `defineProblems(templates, { by? })`
 
-Defines named problem templates and validates them immediately. Each key is matched against `error.code` (default), against the error's constructor name (`by: "className"`), or against either (`by: "both"`). Matching never looks at `message`.
+Defines named problem templates and validates them immediately. A template whose status cannot carry a body (any 1xx, 204, 205 and 304) is rejected here, so `toResponse` cannot fail later on a request. Each key is matched against `error.code` (default), against the error's constructor name (`by: "className"`), or against either (`by: "both"`). Matching never looks at `message`.
 
 ### `isProblemDetails(value)`
 

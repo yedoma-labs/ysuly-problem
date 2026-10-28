@@ -1,13 +1,11 @@
 import {
+	canCarryProblemBody,
 	normalizeProblem,
 	PROBLEM_CONTENT_TYPE,
 	type ProblemDetails,
 	ProblemError,
 	type ProblemInput,
 } from "./problem.js";
-
-/** Statuses that cannot carry a body, or that the Response constructor rejects. */
-const BODYLESS_OR_UNSUPPORTED_STATUSES: ReadonlySet<number> = new Set([101, 103, 204, 205, 304]);
 
 export interface ToResponseOptions {
 	/** Extra headers. The Content-Type is always set to the problem media type. */
@@ -22,7 +20,7 @@ export interface ToResponseOptions {
 export function toResponse(problem: ProblemDetails, options: ToResponseOptions = {}): Response {
 	const normalized = normalizeProblem(toProblemInput(problem));
 
-	if (normalized.status < 200 || BODYLESS_OR_UNSUPPORTED_STATUSES.has(normalized.status)) {
+	if (!canCarryProblemBody(normalized.status)) {
 		throw new ProblemError([
 			`status ${normalized.status} cannot be sent with a problem body (use 200-599, except 204, 205 and 304)`,
 		]);

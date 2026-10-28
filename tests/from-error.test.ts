@@ -334,4 +334,16 @@ describe("defineProblems()", () => {
 	it("rejects an empty template key", () => {
 		expect(() => defineProblems({ "": { status: 400, title: "x" } })).toThrow(ProblemError);
 	});
+
+	it("rejects templates whose status cannot carry a body, so toResponse never fails per request", () => {
+		for (const status of [100, 101, 204, 205, 304]) {
+			expect(() => defineProblems({ Bad: { status, title: "x" } })).toThrow(ProblemError);
+		}
+	});
+
+	it("accepts a template that toResponse can send", () => {
+		const registry = defineProblems({ Accepted: { status: 422, title: "Unprocessable" } });
+		const error = Object.assign(new Error("ignored"), { code: "Accepted" });
+		expect(toResponse(fromError(error, { registry })).status).toBe(422);
+	});
 });
