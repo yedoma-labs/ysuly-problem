@@ -10,8 +10,6 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-7-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **ысулы** (*ysuly*) — Yakutian (Sakha) for "(noch zu bestätigen)"
-
 Type-safe [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457) Problem Details for TypeScript, with a mapping from arbitrary thrown errors that never leaks internals. Zero runtime dependencies. Uses only Web-standard APIs (`Response`, `Headers`, `JSON`), so it runs on Node 20+, Bun, Deno and edge runtimes.
 
 ## The problem
