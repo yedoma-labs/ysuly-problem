@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/yedoma-labs/ysuly-problem/compare/v1.0.0...v1.0.1) (2026-10-28)
+
+
+### Bug Fixes
+
+* reject registry templates whose status cannot carry a body ([9aeb916](https://github.com/yedoma-labs/ysuly-problem/commit/9aeb9168b41db56be4cf78551a254a38cd36e0fd))
+
 # 1.0.0 (2026-10-28)
 
 
