@@ -1,3 +1,4 @@
+export { isProblemDetails, parseProblem } from "./client.js";
 export { type ErrorClass, type FromErrorOptions, fromError } from "./from-error.js";
 export {
 	DEFAULT_PROBLEM_TYPE,
